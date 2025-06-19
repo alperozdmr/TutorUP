@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Settings</h1>
+
+        </div>
+
+        <div class="section-body">
+            <h2 class="section-title">Overview</h2>
+            <p class="section-lead">
+                Organize and adjust all settings about this site.
+            </p>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card card-large-icons">
+                        <div class="card-icon bg-warning text-white">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4>General</h4>
+                            <p>Change Your Profile Settings.</p>
+                            <a href="/Settings/ProfileSetting/" class="card-cta">Change Setting <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6">
+                    <div class="card card-large-icons">
+                        <div class="card-icon bg-warning text-white">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4>Security</h4>
+                            <p>Change Your Password.</p>
+                            <a href="/Settings/ForgetPassword" class="card-cta">Forget Password <i class="fas fa-chevron-right"></i></a>
+                            <br>
+                            <a href="/Settings/ChangePassword" class="card-cta">Change Password <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card card-large-icons">
+                        <div class="card-icon bg-warning text-white">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="card-body col-6">
+                            <h4>Notifications</h4>
+                            <p>Notification Settings.</p>
+                        </div>
+                        <div class="card-body col-6">
+                            <div class="form-group">
+                                <div class="custom-switches-stacked mt-2">
+                                    <label class="custom-switch">
+                                        <input type="radio" name="option" value="1" class="custom-switch-input" checked>
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">Bildirimleri Aç/Kapa</span>
+                                    </label>
+                                    <label class="custom-switch">
+                                        <input type="radio" name="option" value="2" class="custom-switch-input">
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">E-mail Bildirimleri</span>
+                                    </label>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="privacyPolicyCheck">
+                                        <label class="custom-control-label" for="privacyPolicyCheck">Privacy Policy</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</div>
+

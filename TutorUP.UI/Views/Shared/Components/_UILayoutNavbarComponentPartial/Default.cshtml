@@ -1,0 +1,67 @@
+﻿@using TutorUP.EntityLayer.Entity
+@model AppUser
+
+<div class="navbar-bg"></div>
+<nav class="navbar navbar-expand-lg main-navbar">
+    <form class="form-inline mr-auto">
+        <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+        </ul>
+        <div class="search-element">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            <div class="search-backdrop"></div>
+        </div>
+    </form>
+    <ul class="navbar-nav navbar-right">
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+            @if (User.Identity!.IsAuthenticated)
+            {
+               
+               @*  @if(Model.IsInstructor == false)
+                {
+                    <li class="">
+                        <a href="/Settings/ChangeRole" class="btn btn-icon icon-left btn-info mx-3 far fa-user"> Lerner</a>
+                    </li>
+               
+
+                }
+                else
+                {
+                <li class="">
+                    <a href="/Settings/ChangeRole" class="btn btn-icon icon-left btn-info mx-3 far fa-user"> Instructor</a>
+                </li>
+                
+
+                } *@
+            <li class="nav-item">
+                <form asp-controller="Settings"
+                      asp-action="ChangeRole"
+                      method="post"
+                      class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit"
+                            class="btn btn-icon icon-left btn-info mx-3 far fa-user">
+                        @(Model.IsInstructor ? "Switch to Learner" : "Switch to Instructor")
+                    </button>
+                </form>
+            </li>
+              
+            <!-- Notifications  -->
+
+          
+                @await Component.InvokeAsync("_UILayoutNavbarNotificationPartial")
+                <!-- Notifications  -->
+                <!-- Profile dropdown  -->
+                @await Component.InvokeAsync("_UILayoutNavbarProfilePartial")
+                <!-- Profile dropdown  -->
+            }
+            else
+            {
+                <a class="btn btn-outline-success mx-1" asp-controller="Auth" asp-action="Register">Register</a>
+                <a class="btn btn-outline-success mx-1" asp-controller="Auth" asp-action="Login">Login</a>
+            }
+    </ul>
+</nav>

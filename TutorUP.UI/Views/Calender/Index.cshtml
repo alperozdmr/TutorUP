@@ -1,0 +1,84 @@
+﻿@using Newtonsoft.Json
+@using TutorUP.EntityLayer.Entity
+@model AppUser
+@{
+    ViewData["Title"] = "Lerner";
+    //Layout = "~/Views/UILayout/Index.cshtml";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+</head>
+
+<body id="main-body">
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+
+            <!-- Side Bar -->
+            @await Component.InvokeAsync("_UILayoutSidebarComponentPartial")
+
+            <!-- Side Bar -->
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header justify-content-center">
+                        <h1>My Booking Schedule</h1>
+                    </div>
+                    <div class="section-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="custom-calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- FullCalendar CSS & JS -->
+            <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+            @if(Model.IsInstructor == false)
+            {
+                @await Component.InvokeAsync("_CalenderLernerComponentPartial")
+
+            }
+            else
+            {
+                @await Component.InvokeAsync("_CalenderInstructorComponentPartial")
+
+            }
+
+            @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+        </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="~/TutorUP/dist/assets/modules/jquery.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/popper.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/tooltip.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/moment.min.js"></script>
+    <script src="~/TutorUP/dist/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="~/TutorUP/dist/assets/modules/simple-weather/jquery.simpleWeather.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/chart.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/summernote/summernote-bs4.js"></script>
+    <script src="~/TutorUP/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="~/TutorUP/dist/assets/js/page/index-0.js"></script>
+
+    <!-- Template JS File -->
+    <script src="~/TutorUP/dist/assets/js/scripts.js"></script>
+    <script src="~/TutorUP/dist/assets/js/custom.js"></script>
+</body>
+</html>

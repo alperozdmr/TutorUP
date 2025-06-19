@@ -1,0 +1,134 @@
+﻿@using TutorUP.Helper.CustomDto
+@model BookLessonDto
+@{
+    ViewData["Title"] = "CreateBooking";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Book a Lesson</h1>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Book a Lesson</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- Burda ders detayları var loadingde bıraktım siz verileri atarsınız-->
+                            <div class="mb-4">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Course Name</label>
+                                    <p id="lessonName" class="mb-0">@ViewBag.v</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Instructor</label>
+                                    <p id="instructorName" class="mb-0">@ViewBag.Instructor</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Course Description</label>
+                                    <p id="lessonDescription" class="text-muted mb-0">@ViewBag.Description</p>
+                                </div>
+                            </div>
+
+                            <form asp-controller="Booking" asp-action="CreateBooking" method="post" @* id="bookingForm" *@>
+                                <input type="hidden" name="lessonId" id="lessonId">
+                                <input type="hidden" name="userId" id="userId">
+
+                                <div class="form-group">
+                                    <label>Select Date and Time</label>
+                                    <input type="date" class="form-control" id="bookingDate" asp-for="BookedDate" required>
+                                    <small class="form-text text-muted">Please select your preferred date and available time slot</small>
+                                </div>
+
+                                <div id="formFeedback" class="text-danger mb-3" style="display:none;"></div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        Book Now
+                                    </button>
+                                </div>
+
+                                <div id="successMessage" class="mt-4"></div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- Include Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lessonId = urlParams.get('lessonId');
+      const userId = 'user123'; // backendden alınacak
+
+      //verileri ata
+      document.getElementById('lessonId').value = lessonId;
+      document.getElementById('userId').value = userId;
+
+      // takvim işi
+      flatpickr("#bookingDate", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
+        minTime: "09:00",
+        maxTime: "18:00"
+      });
+
+      // Form gönderimi
+      document.getElementById('bookingForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const bookingDate = document.getElementById('bookingDate').value;
+        const feedback = document.getElementById('formFeedback');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const lessonName = document.getElementById('lessonName').textContent || 'Selected Lesson';
+
+        // Hataları ve önceki mesajları temizle
+        feedback.style.display = 'none';
+        feedback.textContent = '';
+        successMessage.innerHTML = '';
+
+        if (!bookingDate) {
+          feedback.textContent = 'Please select a date and time before booking.';
+          feedback.style.display = 'block';
+          return;
+        }
+
+        // Butonun yükleniyor (donme anımasyonu)
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+
+
+        setTimeout(function () {
+          successMessage.innerHTML = `
+            <div class="alert alert-success" role="alert">
+              <i class="fas fa-check-circle"></i> Booking successful!<br>
+              <small>Lesson: ${lessonName}</small><br>
+              <small>Date: ${bookingDate}</small>
+            </div>
+          `;
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Book Now';
+        }, 1000);
+      });
+    });
+</script>
+

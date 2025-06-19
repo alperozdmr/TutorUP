@@ -1,0 +1,107 @@
+﻿@using TutorUP.Helper.Dto
+@model NotificationDto
+@{
+    ViewData["Title"] = "SendNotification";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Send Notification</h1>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Send Notification</h4>
+                        </div>
+                        <div class="card-body">
+                            <div asp-validation-summary=ModelOnly class="alert alert-danger" role="alert">
+                            </div>
+                            <!-- Kullanıcı detayları -->
+                            <div class="mb-4">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">User Name</label>
+                                    <p id="userName" class="mb-0">@ViewBag.userName</p>
+                                </div>
+
+                               
+                            </div>
+
+                            <form method="post"  asp-controller="Notification" asp-action="SendNotification">
+                                <input type="hidden" name="lessonId" id="lessonId">
+                                <input type="hidden" name="userId" id="userId">
+
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Send Message</label>
+                                    <!-- Küçük bir text alanı -->
+                                    <input type="text" class="form-control mb-2" id="messageTitle" asp-for="Title" placeholder="Enter title...">
+                                    <!-- Büyük bir text area -->
+                                    <textarea class="form-control" id="messageBody" rows="5" asp-for="Description" placeholder="Enter your message..."></textarea>
+                                </div>
+                                <div id="formFeedback" class="text-danger mb-3" style="display:none;"></div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        Send Notification
+                                    </button>
+                                </div>
+
+                                
+                            </form>
+                            <div id="successMessage" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+<!-- Include Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        //const userName = document.getElementById('userName').value;
+        const messageTitle = document.getElementById('messageTitle').value;
+        const messageBody = document.getElementById('messageBody').value;
+        const feedback = document.getElementById('formFeedback');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Hataları ve önceki mesajları temizle
+        feedback.style.display = 'none';
+        feedback.textContent = '';
+        successMessage.innerHTML = '';
+
+        if ( !messageTitle || !messageBody) {
+            feedback.textContent = 'Please fill in all the fields before sending the notification.';
+            feedback.style.display = 'block';
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+        setTimeout(function () {
+            successMessage.innerHTML = `
+              <div class="alert alert-success" role="alert">
+                <i class="fas fa-check-circle"></i> Notification Sent Successfully!
+              </div>
+            `;
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Notification';
+        }, 1000);
+    });
+</script>
+

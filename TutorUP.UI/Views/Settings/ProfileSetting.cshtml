@@ -1,0 +1,109 @@
+﻿@using TutorUP.EntityLayer.Entity
+@model AppUser
+@{
+    ViewData["Title"] = "ProfileSetting";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Profile Settings</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item">Profile Settings</div>
+            </div>
+        </div>
+        <div class="section-body">
+            <h2 class="section-title">Hi, @Model.FirstName</h2>
+            <p class="section-lead">
+                Change information about yourself on this page.
+            </p>
+
+            <div class="row mt-sm-4">
+
+
+                <div class="col-12">
+                    <div class="card">
+                        <form method="post" asp-controller="Settings" asp-action="ProfileSetting" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Edit Profile</h4>
+                            </div>
+                            <div class="card-body">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group text-center">
+
+                                    @if(Model.ProfileImage == "")
+                                    {
+                                        <img src="~/TutorUP/dist/assets/img/avatar/avatar-1.png" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Model.ProfileImage" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
+
+                                    }
+
+                                    <div>
+                                        <label for="profile_image" class="btn btn-primary">
+                                            Change Profile Picture
+                                        </label>
+                                        @* <input type="file" asp-for="ProfileImage" id="profile_image"  style="display: none;"> *@
+                                        <input type="file" name="ImageFile" asp-for="ProfileImage" id="profile_image" style="display: none;">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-12">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" asp-for="FirstName" required="">
+                                        <div class="invalid-feedback">
+                                            Please fill in the first name
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" asp-for="LastName" required="">
+                                        <div class="invalid-feedback">
+                                            Please fill in the last name
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label>Major</label>
+                                        <input type="text" class="form-control" asp-for="Major" required="">
+                                        <div class="invalid-feedback">
+                                            Please fill in the last name
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-7 col-12">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" asp-for="Email" required="">
+                                        <div class="invalid-feedback">
+                                            Please fill in the email
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-5 col-12">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" asp-for="PhoneNumber">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label>Bio</label>
+                                        <textarea class ="form-control" asp-for="Biography"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

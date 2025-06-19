@@ -1,0 +1,108 @@
+﻿@using TutorUP.EntityLayer.Entity
+@model AppUser
+@{
+    ViewData["Title"] = "OtherUsers";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Profile</h1>
+
+        </div>
+        <div class="col-12 mb-4">
+            <div class="hero text-white hero-bg-image hero-bg-parallax" style="background-image: url('/TutorUP/dist/assets/img/unsplash/andre-benz-1214056-unsplash.jpg');">
+                <div class="hero-inner">
+                    <h2>This is, @Model.FirstName!</h2>
+                    <!-- <p class="lead">You almost arrived, complete the information about your account to complete registration.</p> -->
+                    <div class="mt-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-body">
+            <div class="row mt-sm-4">
+                <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                    <div class="card profile-widget">
+                        <div class="profile-widget-header">
+                            <!-- <div style="position: absolute; top: 10px; right: 10px;">
+                            <a class="btn btn-sm btn-primary" href="#">Settings</a>
+                            </div> -->
+                            <img alt="image" class="rounded-circle profile-widget-picture" src="@Model.ProfileImage" />
+                            <div class="profile-widget-items">
+                                <div class="profile-widget-item"><div class="text-left" style="margin-left: 80px;"><div class="profile-widget-item-label text-left">Lessons</div><div class="profile-widget-item-value"></div></div></div>
+                            </div>
+                        </div>
+                        <div class="profile-widget-description">
+                            <div class="profile-widget-name">@Model.FirstName @Model.LastName <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> @Model.Major</div></div>
+                            @Model.Biography
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="font-weight-bold mb-2">Follow @Model.FirstName On</div>
+                            <a class="btn btn-social-icon btn-facebook mr-1" href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-twitter mr-1" href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-github mr-1" href="#">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-instagram" href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!--reviews-->
+            <!--reviews-->
+            <!--other-->
+            <div class="card col-12 col-sm-12 col-lg-12">
+                <div class="card-header">
+                    <h4>Lessons</h4>
+                </div>
+                <div class="card-body">
+
+                    @await Component.InvokeAsync("_OtherUsersLessonPartial")
+
+
+                    
+
+                </div>
+                <!--other-->
+            </div>
+           
+            <div class="row mt-4"><div class="col-12 col-md-12 col-lg-12"></div></div>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="courseModal" tabindex="-1" role="dialog" aria-labelledby="courseModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="courseModalTitle">Course Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="courseModalDescription">
+                Course description goes here.
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <a type="button" href="" class="btn btn-primary" id="bookNowBtn">Book</a>
+                <a type="button" href="" class="btn btn-success" id="reviewsBtn">Reviews</a>
+                <a type="button" href="" class="btn btn-info" id="messageBtn">Send Message</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

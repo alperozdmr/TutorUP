@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_UILayoutHeadComponentPartial")
+
+<body id="main-body">
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            @await Component.InvokeAsync("_UILayoutNavbarComponentPartial")
+
+            <!-- Side Bar -->
+            @await Component.InvokeAsync("_UILayoutSidebarComponentPartial")
+            <!-- Side Bar -->
+            <!-- Main Content -->
+            @RenderBody()  
+           
+          
+            <!-- Main Content -->
+            @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+            <!-- Footer -->
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@using TutorUP.Helper.CustomDto
+@model List<InstructorBooks>
+
+<div class="table-responsive" id="instructor-section" style="display: none;">
+                                <table class="table table-striped" id="sortable-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <i class="fas fa-th"></i>
+                                            </th>
+                                            <th>Lerner Name/Course</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                            <th>Approve</th>
+                                            <th>Cancel</th>
+                                            <th>Send Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+            @foreach (var item in Model)
+            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="sort-handler">
+                                                            <i class="fas fa-th"></i>
+                                                        </div>
+                                                    </td>
+                                                    <td>@item.LernerName/@item.CourseName</td>
+
+                                                    <td>@item.BookDate</td>
+                    @if (item.IsCancelled == false && item.IsApproved == false)
+                    {
+                                                            <td><div class="badge badge-warning">In Processing</div></td>
+                    }
+                    @if (item.IsCancelled == true)
+                    {
+                                                            <td><div class="badge badge-danger">Cancelled</div></td>
+                    }
+                    @if (item.IsApproved == true)
+                    {
+                                                            <td><div class="badge badge-success">Approved</div></td>
+
+                    }
+
+                    <td><a href="/Schedular/Approve/@item.BookALessonID" class="btn btn-success">Approve</a></td>
+                                                    <td><a href="/Schedular/Cancel/@item.BookALessonID" class="btn btn-danger">Cancel</a></td>
+                                                    <td><a href="/Notification/SendNotification/@item.LernerID" class="btn btn-info">Message</a></td>
+                                                </tr>
+            }
+                                    </tbody>
+                                </table>
+                            </div>

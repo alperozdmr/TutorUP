@@ -1,0 +1,32 @@
+﻿@using TutorUP.Helper.Dto
+@model List<NotificationDto>
+
+<li class="dropdown dropdown-list-toggle">
+    <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+        <div class="dropdown-header">
+            Notifications
+            <div class="float-right">
+                <a href="#">Mark All As Read</a>
+            </div>
+        </div>
+        <div class="dropdown-list-content dropdown-list-icons">
+            @foreach (var item in Model)
+            {
+                <a href="#" class="dropdown-item ">
+                    <div class="dropdown-item-icon bg-info text-white">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="dropdown-item-desc">
+                        @item.SenderName  @item.Title
+                        <p> @item.Description</p>
+                        <div class="time ">2 Min Ago</div>
+                    </div>
+                </a>
+            }
+                </div>
+                <div class="dropdown-footer text-center">
+            <a href="/Notification/Index/">View All <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </li>

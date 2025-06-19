@@ -1,0 +1,56 @@
+﻿@using TutorUP.Helper.Dto
+@model List<NotificationDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Notifications</h1>
+
+        </div>
+
+        <div class="section-body">
+
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Notifications</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+                                @foreach (var item in Model)
+                                {
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <div class="media-title mb-1">@item.SenderName , @item.Title</div>
+                                            <div class="text-time">@item.Date</div>
+                                            <div class="media-description text-muted">@item.Description</div>
+                                            @if(item.Status == true)
+                                            {
+                                                <p class="text-success">Readen</p>
+                                            }
+                                            <div class="media-links">
+                                                <a href="/Notification/MarkAsRead/@item.NotificationID">Mark As Read</a>
+                                                <div class="bullet"></div>
+                                                <a href="#">Reply</a>
+                                                <div class="bullet"></div>
+                                                <a href="/Notification/Delete/@item.NotificationID" class="text-danger">Trash</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+

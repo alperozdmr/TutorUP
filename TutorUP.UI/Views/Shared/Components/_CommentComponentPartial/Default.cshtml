@@ -1,0 +1,60 @@
+﻿@* @using TutorUP.EntityLayer.Entity
+
+@model List<ForumComment>
+
+<div class="modal fade" id="courseModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+
+            <!-- Modal başlığı (kapatma ikonu kalsın, Comments yazısı silinsin isterseniz burayı da kaldırabilirsiniz) -->
+            <div class="modal-header py-2">
+                <h5 class="modal-title mb-0">Comments</h5>
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- --------------------  B O D Y  -------------------- -->
+            <!-- Artık grid-kolonu veya kart başlığı yok; liste doğrudan modal gövdesinde tam genişlikte -->
+            <div class="modal-body p-0">
+
+                <ul class=" comment-list list-unstyled list-unstyled-border list-unstyled-noborder my-3 px-4">
+
+                    @foreach(var item in Model){
+                        <li class="media py-3 border-bottom">
+
+
+                            <div class="media-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="media-title mb-1 font-weight-bold">@item.UserName</h6>
+
+                                </div>
+                                <small class="text-muted d-block mb-2">@item.CreatedDate</small>
+                                <p class="media-description text-muted mb-2">
+                                   @item.Content
+                                </p>
+
+                            </div>
+                        </li>
+                    }
+                    <!-- 1. yorum -->
+                   
+
+                    <!-- 2. yorum -->
+                   
+
+                </ul>
+                <div class="border-top p-3 d-flex align-items-start" id="commentComposer">
+                    <textarea id="newCommentText"
+                              class="form-control flex-grow-1 mr-2"
+                              rows="1" placeholder="Write a comment…"></textarea>
+
+                    <button id="sendCommentBtn" class="btn btn-primary">
+                        Send
+                    </button>
+                </div>
+
+            </div><!-- /modal-body -->
+        </div><!-- /modal-content -->
+    </div>
+</div> *@

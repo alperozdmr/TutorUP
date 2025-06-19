@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "LernerSchedular";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Schedule</h1>
+            <div class="section-header-breadcrumb">
+
+                <div class="breadcrumb-item">Schedule</div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <h2 class="section-title">Schedule</h2>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Schedule</h4>
+                            <div class="form-group mx-5 mb-0 ml-auto">
+                                <select class="form-control" id="user-role-selector">
+                                    <option value="learner">Learner</option>
+                                    <option value="instructor">Instructor</option>
+                                </select>
+                            </div>
+                            <div class="card-header-action">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            @await Component.InvokeAsync("_LernerSchedulerPartial")
+                            @await Component.InvokeAsync("_InstructorSchedulerPartial")
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  const selector = document.getElementById('user-role-selector');
+                  const learner = document.getElementById('learner-section');
+                  const instructor = document.getElementById('instructor-section');
+                  selector.addEventListener('change', function() {
+                    learner.style.display = this.value === 'learner' ? 'block' : 'none';
+                    instructor.style.display = this.value === 'instructor' ? 'block' : 'none';
+                  });
+                });
+            </script>
+        </div>
+    </section>
+</div>
+

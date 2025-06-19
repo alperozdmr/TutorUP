@@ -1,0 +1,57 @@
+﻿@using TutorUP.EntityLayer.Entity
+@model AppUser
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="/Lesson/Index">TutorUP</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="/Lesson/Index">TU</a>
+        </div>
+        <ul class="sidebar-menu">
+
+            <li class="">
+                <a href="/Lesson/Index" class="nav-link "><i class="fas fa-search"></i><span>Lessons</span></a>
+
+            </li>
+            <li class="">
+                <a href="/Forum/Index" class="nav-link "><i class="far fa-square"></i><span>Forum</span></a>
+
+            </li>
+             @if (User.Identity!.IsAuthenticated)
+            {
+
+                @if (Model.IsInstructor == true) {
+                <li class="">
+                    <a href="/Lesson/CreateLesson/" class="nav-link "><i class="fas fa-bolt"></i><span>Create Lesson</span></a>
+
+                </li>
+                    <li class="">
+                        <a href="/Forum/CreateForum/" class="nav-link "><i class="fas fa-bolt"></i><span>Create Forum</span></a>
+
+                    </li>
+                }
+                <li class="">
+                    <a href="/Calender/Index" class="nav-link "><i class="fas fa-calendar"></i><span>Calender</span></a>
+
+                </li>
+                <li class="">
+                <a href="/Schedular/Index" class="nav-link "><i class="fas fa-check"></i><span>Schedular</span></a>
+
+                </li>
+                <li class="">
+                <a href="/Notification/Index" class="nav-link "><i class="fas fa-bell"></i><span>All Notifications</span></a>
+
+                </li>
+                <li class="">
+                    <a href="/Settings/Index" class="nav-link "><i class="fa fa-cog"></i><span>Settings</span></a>
+
+                </li>
+
+               
+
+            }
+
+        </ul>
+
+</div>

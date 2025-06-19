@@ -1,0 +1,50 @@
+﻿@using TutorUP.Helper.CustomDto
+@model List<ListReviewDto>
+@{
+    ViewData["Title"] = "Reviews";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Reviews</h1>
+
+        </div>
+
+        <div class="section-body">
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Reviews -</h4>
+                            <span class="badge badge-dark">@ViewBag.courseName  -  @ViewBag.rate/10</span>
+                            <h4>  </h4>
+                            <a href="/Profile/OtherUsers/@TempData["InstructorId"]" class="btn btn-icon icon-left btn-secondary"><i class="far fa-user"></i> See Intstructor Profile</a>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+                                @foreach(var item in Model)
+                                {
+                                    <li class="media">
+                                        <img alt="image" class="mr-3 rounded-circle" width="70" src="@item.UserImage">
+                                        <div class="media-body">
+                                            <div class="media-title mb-1">@item.UserName</div>
+                                            <div class="text-time">Rating @item.Rating/10</div>
+                                            <div class="media-description text-muted"> @item.Comment</div>
+                                            
+                                        </div>
+                                    </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
